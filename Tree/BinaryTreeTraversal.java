@@ -116,4 +116,36 @@ public class BinaryTreeTraversal {
         return result;
     }
 
+   //再写一遍
+
+    public List<Integer> postOrderLevelTraversal(TreeNode root) {
+        List<Integer> result = null;
+        if(root == null)
+            return result;
+        result = new ArrayList<Integer>();
+        Stack<WrapperTreeNode> stack = new Stack<>();
+        TreeNode p = root;
+        while(p != null || !stack.isEmpty()) {
+            while(p != null) {
+                stack.push(new WrapperTreeNode(p));
+                p = p.left;
+            }
+            WrapperTreeNode tmp = stack.peek();
+            while(!stack.empty()) {
+                if(tmp.visited) {
+                    result.add(tmp.treeNode.value);
+                    stack.pop();
+                    tmp = stack.peek();
+                }else {
+                  tmp.visited = true;
+                  p = tmp.treeNode.right;
+                  if(p != null)
+                    stack.push(new WrapperTreeNode(p));
+                  break;
+                }
+            }
+        }
+        return result;
+    }
+
 }
