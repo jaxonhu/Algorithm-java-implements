@@ -13,6 +13,7 @@ public class WordLadder {
 
     /**
      * WordLadder I : 返回次数即可
+     * 思路：宽度优先遍历，保存一个字典集合，一个起始集合，一个结束集合，一个访问集合
      */
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
 
