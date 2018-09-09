@@ -9,6 +9,9 @@ public class SimilaryString {
 
     /**
      * 相似字符串
+     *
+     * 通过率 75%
+     * 还可以继续优化
      */
 
     static boolean match(String subS, String T) {
