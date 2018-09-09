@@ -12,24 +12,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ReverseLinkedList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/linklist/ReverseLinkedList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="18" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RotateList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/linklist/RotateList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SortList.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/linklist/SortList.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -84,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimilaryString.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimilaryString.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stringtype/SimilaryString.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
@@ -92,6 +74,24 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FullMultipartGraph.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/graph/FullMultipartGraph.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FullMultipartGraph2.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/graph/FullMultipartGraph2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -126,8 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/dynamicprogramming/BackPackage.java" />
-        <option value="$PROJECT_DIR$/src/dynamicprogramming/CoinChange.java" />
         <option value="$PROJECT_DIR$/src/dynamicprogramming/OnesAndZeros.java" />
         <option value="$PROJECT_DIR$/src/dynamicprogramming/TargetSum.java" />
         <option value="$PROJECT_DIR$/src/dynamicprogramming/LongestCommonSequence.java" />
@@ -177,6 +175,8 @@
         <option value="$PROJECT_DIR$/src/arraytype/DengChaArray.java" />
         <option value="$PROJECT_DIR$/src/dynamicprogramming/DecodeWays.java" />
         <option value="$PROJECT_DIR$/src/stringtype/SimilaryString.java" />
+        <option value="$PROJECT_DIR$/src/graph/FullMultipartGraph.java" />
+        <option value="$PROJECT_DIR$/src/graph/FullMultipartGraph2.java" />
       </list>
     </option>
   </component>
@@ -431,12 +431,12 @@
       <workItem from="1536033146723" duration="5022000" />
       <workItem from="1536058061236" duration="617000" />
       <workItem from="1536291995464" duration="3000" />
-      <workItem from="1536494116262" duration="1240000" />
+      <workItem from="1536494116262" duration="3969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226884000" />
+    <option name="totallyTimeSpent" value="229613000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="839" extended-state="0" />
@@ -453,10 +453,10 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32614556" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32884097" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3328841" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3328841" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29756796" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29756796" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -620,6 +620,20 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/FullMultipartGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="81" column="5" lean-forward="true" selection-start-line="81" selection-start-column="5" selection-end-line="81" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/graph/FullMultipartGraph2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="37" column="29" lean-forward="true" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
         </state>
       </provider>
     </entry>
