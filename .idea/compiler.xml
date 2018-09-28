@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Algorithm-Java-implements" target="1.5" />
+      <module name="Algorithm-Java-implements" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
