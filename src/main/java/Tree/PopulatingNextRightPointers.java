@@ -111,7 +111,6 @@ public class PopulatingNextRightPointers {
                 }else if(p.right != null) {
                     first = p.right;
                 }
-
             }
             //左节点不为空，则为左节点的next赋值，左节点的可能是第一个，此时last为空
             if(p.left != null) {
@@ -129,7 +128,6 @@ public class PopulatingNextRightPointers {
                     last = p.right;
                 }
             }
-
             if(p.next != null) {
                 p = p.next;
             }else {

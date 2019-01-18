@@ -41,4 +41,36 @@ public class SortList {
         quickSort(start, small);
         quickSort(small.next, end);
     }
+
+    /**
+     * 重写一遍，链表快速排序
+     */
+
+    public void listQuickSort(ListNode head) {
+
+    }
+
+    public void quickSort2(ListNode start, ListNode end) {
+        if(start == end)
+            return;
+        ListNode p = start;
+        ListNode small = start;
+        int key = p.val;
+        while(p != end) {
+            if(p.val >= key) {
+                p = p.next;
+            }else {
+                small = small.next;
+                int temp = small.val;
+                small.val = p.val;
+                p.val = temp;
+                p = p.next;
+            }
+        }
+        int temp = start.val;
+        start.val = small.val;
+        small.val = temp;
+        quickSort(start, small);
+        quickSort(small.next, end);
+    }
 }

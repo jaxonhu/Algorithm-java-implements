@@ -57,6 +57,6 @@ public class ReverseLinkedList {
         head_next.next = head;
         head.next = null;
         return head_new;
-
     }
+
 }

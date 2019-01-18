@@ -73,6 +73,40 @@ public class Permutation {
         }
     }
 
+
+    /**
+     * 重写一遍
+     * 思路想错了，数组中的每一个元素都要取，所以不需要用index来标明遍历的起始位置
+     * 直接遍历数组中的每个元素就好
+     *
+     */
+
+    public List<List<Integer>> permuteUnique2(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        int n = nums.length;
+        if(n == 0)
+            return result;
+        boolean[] visited = new boolean[n];
+        Arrays.sort(nums);
+        recursive3(result, new ArrayList<>(), nums, 0, visited);
+        return result;
+    }
+
+    public void recursive3(List<List<Integer>> result, List<Integer> inner, int[] nums, int index, boolean[] visited) {
+        if(index == nums.length) {
+            result.add(new ArrayList<>(inner));
+            return;
+        }
+        for(int i = index ; i < nums.length ; ++ i) {
+            if(i > 0 && nums[i] == nums[i-1] && !visited[i-1])
+                continue;
+            inner.add(nums[i]);
+            visited[i] = true;
+            recursive3(result, inner, nums, i+1, visited);
+            inner.remove(inner.size() - 1);
+            visited[i] = false;
+        }
+    }
     /**
      *  这道题不是免费题目，直观思路是先求全排列，然后判断全排列是否是回文的
      *
