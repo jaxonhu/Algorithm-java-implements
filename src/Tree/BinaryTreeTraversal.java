@@ -133,7 +133,7 @@ public class BinaryTreeTraversal {
             WrapperTreeNode tmp = stack.peek();
             while(!stack.empty()) {
                 if(tmp.visited) {
-                    result.add(tmp.treeNode.value);
+                    result.add(tmp.treeNode.val);
                     stack.pop();
                     tmp = stack.peek();
                 }else {

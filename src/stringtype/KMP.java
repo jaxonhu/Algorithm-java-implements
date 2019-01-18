@@ -50,4 +50,45 @@ public class KMP {
         }
     }
 
+    /**
+     * KMP 算法原理：
+     */
+    public static int[] genNext(String ps) {
+        int n = ps.length();
+        int[] next = new int[n];
+        char[] psChars = ps.toCharArray();
+        int k = -1;
+        int j = 0;
+        next[0] = -1;
+        while(j < n - 1) {
+            if(k == -1 || psChars[j] == psChars[k]) {
+                next[++j] = ++k;
+            }else {
+                k = next[k];
+            }
+        }
+        return next;
+    }
+
+    public int KMP2(String ts, String ps) {
+        char[] tsChars = ts.toCharArray();
+        char[] psChars = ts.toCharArray();
+        int m = tsChars.length;
+        int n = psChars.length;
+        int[] next = genNext(ps);
+        int i = 0 , j = 0;
+        while(i < m  && j < n) {
+            if(j == -1 || tsChars[i] == psChars[j]) {
+                ++i;
+                ++j;
+            }else {
+                j = next[j];
+            }
+        }
+        if(j == n) {
+            return i - j;
+        }
+        return -1;
+    }
+
 }
