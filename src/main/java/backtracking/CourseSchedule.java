@@ -117,10 +117,10 @@ public class CourseSchedule {
         return hasCycle;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         int[][] test = {{0,1},{2,3},{1,2},{3,0}};
         int[][] test2 = {{1,0}, {2,0}};
         CourseSchedule cs = new CourseSchedule();
-        System.out.println(cs.canFinish(3, test2));
+        System.out.println(cs.canFinish2(4, test));
     }
 }

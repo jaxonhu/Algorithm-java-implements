@@ -73,7 +73,7 @@ public class BackPackage {
         }
         for(int i = 1 ; i < n ; ++ i) {
             for(int j = bag ; j >= 0 ; -- j) {
-                if(weight[i] <= bag) {
+                if(weight[i] <= j) {
                     dp[j] = Math.max(dp[j], product[i] + dp[j - weight[i]]);
                 }
             }
