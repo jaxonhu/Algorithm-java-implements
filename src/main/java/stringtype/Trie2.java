@@ -59,6 +59,10 @@ public class Trie2 {
                 }
                 return false;
             }
+            if(root.vocals[26] != null) {
+                root = root.vocals[26];
+                continue;
+            }
             if(root.vocals[index] == null)
                 return false;
             root = root.vocals[index];
@@ -69,7 +73,7 @@ public class Trie2 {
 
     public static void main(String[] args) {
         Trie2 t2 = new Trie2();
-        t2.addWord(".abc");
+        t2.addWord(".ab");
         System.out.println(t2.search("cab"));
     }
 }
