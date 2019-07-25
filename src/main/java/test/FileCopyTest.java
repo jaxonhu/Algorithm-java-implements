@@ -7,6 +7,8 @@ import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @Author: jaxon
@@ -52,14 +54,17 @@ public class FileCopyTest {
         }
         FileInputStream fis = new FileInputStream(source);
 //        FileOutputStream fos = new FileOutputStream(dest, true);
-        RandomAccessFile fos = new RandomAccessFile(dest, "rw");
-        FileChannel sourceCh = fis.getChannel();
-        FileChannel destCh = fos.getChannel();
+//        RandomAccessFile fos = new RandomAccessFile(dest, "rw");
+
+//        FileChannel sourceCh = fis.getChannel();
+//        FileChannel destCh = fos.getChannel();
+        FileChannel sourceCh = FileChannel.open(Paths.get(sourcePath), StandardOpenOption.READ);
+        FileChannel destCh = FileChannel.open(Paths.get(destPath), StandardOpenOption.WRITE, StandardOpenOption.READ);
         long fileSize = sourceCh.size();
         int blocks = (int) Math.ceil((double)fileSize / Integer.MAX_VALUE);
         MappedByteBuffer[] mbbs = new MappedByteBuffer[blocks];
         MappedByteBuffer[] mbbsSwap = new MappedByteBuffer[blocks];
-        // 分块读取
+        // 分块读取wq
         long headPtr = 0;
         long blockSize = Integer.MAX_VALUE;
         for(int i = 0 ; i < blocks ; i ++) {
@@ -97,7 +102,7 @@ public class FileCopyTest {
 //        destCh.write(mbb);
         sourceCh.close();
         destCh.close();
-        fos.close();
+//        fos.close();
         fis.close();
     }
     //NIO文件通道文件复制
