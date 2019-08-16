@@ -13,11 +13,20 @@ public class IntervalSearch {
         int low = 0, high = nums.length - 1;
         while(low < high) {
             int mid = (low + high) / 2;
-            long temp = nums[mid];
+            int temp = nums[mid];
             if(temp < leftK) {
                 low = mid + 1;
             } else {
                 high = mid;
+            }
+        }
+        if(high > 0 && nums[high] != leftK) {
+            high--;
+            while(high > 0) {
+                if(nums[high] == nums[high-1])
+                    high --;
+                else
+                    break;
             }
         }
         return high;
@@ -47,9 +56,10 @@ public class IntervalSearch {
 
     public static void main(String[] args) {
 
-        int[] nums = {0,0,0,0,1,1,3,4,5,5,5,7,9,9,9,10};
+        int[] nums = {0,0,0,0,2,2,2,2,3,4,5,5,5,7,9,9,9,10};
+//        int[] nums = {0,2};
         int left = getSectionLeft(1, nums);
-        int right = getSectionRight(-1, nums);
+        int right = getSectionRight(6, nums);
         System.out.println("left: " + left);
         System.out.println("right: " + right);
     }
