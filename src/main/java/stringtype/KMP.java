@@ -14,15 +14,18 @@ public class KMP {
      */
 
     public static int[] getNext(String ps) {
-        char[] p = ps.toCharArray();
-        int[] next = new int[p.length];
-        next[0] = -1;
-        int j = 0, k = -1;
-        while(j < p.length - 1) {
-            if(k == -1 || p[j] == p[k]) {
-                next[++j] = ++ k;
+        char[] pattern = ps.toCharArray();
+        int[] next = new int[pattern.length];
+        int j = 1, len = 0;
+        next[0] = 0;
+        while(j < pattern.length) {
+            if(pattern[j] == pattern[len]) {
+                next[j++] = ++len;
             }else {
-                k = next[k];
+                if(len > 0)
+                    len = next[len - 1];
+                else
+                    next[j++] = len;
             }
         }
         return next;
@@ -35,60 +38,22 @@ public class KMP {
         int i = 0, j = 0;
         int[] next = getNext(ps);
         while(i < t.length && j < p.length) {
-            if(j == -1 || t[i] == p[j]) {
+            if(t[i] == p[j]) {
                 ++i;
                 ++j;
             }else {
-                j = next[j];
+                if( j == 0) i ++; // 如果第一位不相等，i直接++
+                else j = next[j - 1];
             }
         }
-        if(j == p.length) {
-            //返回在ts中的index
-            return i - j;
-        }else {
-            return -1;
-        }
+        return i - p.length;
     }
 
-    /**
-     * KMP 算法原理：
-     */
-    public static int[] genNext(String ps) {
-        int n = ps.length();
-        int[] next = new int[n];
-        char[] psChars = ps.toCharArray();
-        int k = -1;
-        int j = 0;
-        next[0] = -1;
-        while(j < n - 1) {
-            if(k == -1 || psChars[j] == psChars[k]) {
-                next[++j] = ++k;
-            }else {
-                k = next[k];
-            }
-        }
-        return next;
-    }
 
-    public int KMP2(String ts, String ps) {
-        char[] tsChars = ts.toCharArray();
-        char[] psChars = ts.toCharArray();
-        int m = tsChars.length;
-        int n = psChars.length;
-        int[] next = genNext(ps);
-        int i = 0 , j = 0;
-        while(i < m  && j < n) {
-            if(j == -1 || tsChars[i] == psChars[j]) {
-                ++i;
-                ++j;
-            }else {
-                j = next[j];
-            }
-        }
-        if(j == n) {
-            return i - j;
-        }
-        return -1;
+    public static void main(String[] args) {
+        String target = "abbca";
+        String pattern = "bc";
+        System.out.println(KMP(target, pattern));
     }
 
 }
