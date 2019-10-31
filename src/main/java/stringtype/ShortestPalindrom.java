@@ -28,8 +28,7 @@ public class ShortestPalindrom {
         int i = 1;
         while( i < l) {
             if(temp.charAt(i) == temp.charAt(len)) {
-                len ++;
-                prefix[i++] = len;
+                prefix[i++] = ++ len;
             } else {
                 if(len > 0)
                     len = prefix[len - 1];
