@@ -43,7 +43,7 @@ public class HeapSort {
         }
     }
 
-    public static void adjustHeap(int[] nums, int i, int length) {
+    public static void adjustHeap(int[] nums, int i, int length) { // 自上而下调整大顶堆
         //保存堆顶元素
         int temp = nums[i];
         //从根节点的左子节点开始遍历
