@@ -34,6 +34,9 @@ public class AdditiveNumber {
      *
      *  (n-j-i)是剩下的sum部分，根据两数字相加，其和的位数等于两个加数之间最大的位数或最大的位+1，所以Math(j,i)一定小于等于n-i-j
      *
+     *  只要确定了前两项，后面就可以验证了
+     *
+     *
      */
 
     public boolean isAdditiveNumber(String num) {
