@@ -24,20 +24,14 @@ public class ShortestPalindrom {
         int l = temp.length();
         int[] prefix = new int[l];
         prefix[0] = 0;
-        int len = 0;
-        int i = 1;
-        while( i < l) {
-            if(temp.charAt(i) == temp.charAt(len)) {
-                prefix[i++] = ++ len;
-            } else {
-                if(len > 0)
-                    len = prefix[len - 1];
-                else
-                    prefix[i++] = 0;
-            }
+        for(int i = 1 ; i < temp.length() ; i ++) {
+            int j = prefix[i - 1];
+            while(j > 0 && temp.charAt(i) != temp.charAt(j))
+                j = prefix[j - 1];
+            j += (temp.charAt(i) == temp.charAt(j)) ? 1 : 0;
+            prefix[i] = j;
         }
-        int common = prefix[l - 1];
-        String s2 = s.substring(common);
+        String s2 = s.substring(prefix[temp.length() - 1]);
         return new StringBuilder(s2).reverse().toString() + s;
     }
 
