@@ -14,45 +14,43 @@ public class KMP {
      */
 
     public static int[] getNext(String ps) {
-        char[] pattern = ps.toCharArray();
-        int[] next = new int[pattern.length];
-        int j = 1, len = 0;
-        next[0] = 0;
-        while(j < pattern.length) {
-            if(pattern[j] == pattern[len]) {
-                next[j++] = ++len;
-            }else {
-                if(len > 0)
-                    len = next[len - 1];
-                else
-                    next[j++] = len;
-            }
+        int[] next = new int[ps.length()+1];
+        int i = 0;
+        int j = -1;
+        next[0] = -1;
+        while(i < ps.length()) {
+           if(j == -1  || ps.charAt(i) == ps.charAt(j)) {
+               ++i;
+               ++j;
+               next[i] = j;
+           } else {
+               j = next[j];
+           }
         }
         return next;
     }
 
 
     public static int KMP(String ts, String ps) {
-        char[] t = ts.toCharArray();
-        char[] p = ps.toCharArray();
-        int i = 0, j = 0;
-        int[] next = getNext(ps);
-        while(i < t.length && j < p.length) {
-            if(t[i] == p[j]) {
-                ++i;
-                ++j;
-            }else {
-                if( j == 0) i ++; // 如果第一位不相等，i直接++
-                else j = next[j - 1];
-            }
-        }
-        return i - p.length;
+      int i = 0;
+      int j = 0;
+      int[] next = getNext(ps);
+      while(i < ts.length() && j < ps.length()) {
+          if(j == -1 || ts.charAt(i) == ps.charAt(j)) {
+              i++;
+              j++;
+          } else
+              j = next[j];
+      }
+      if(j == ps.length())
+          return i - j;
+      else return -1;
     }
 
 
     public static void main(String[] args) {
         String target = "abbca";
-        String pattern = "bc";
+        String pattern = "abc";
         System.out.println(KMP(target, pattern));
     }
 
