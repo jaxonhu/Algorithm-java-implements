@@ -60,7 +60,7 @@ public class LRUCache {
         }
     }
 
-    public void updateCache(Node node) {
+    private void updateCache(Node node) {
         if(node == head) {
             return;
         }else {
@@ -79,7 +79,7 @@ public class LRUCache {
         }
     }
 
-    public void addNew(Node node) {
+    private void addNew(Node node) {
         if(head == null) {
             head = node;
             tail = node;
@@ -90,14 +90,14 @@ public class LRUCache {
         }
     }
 
-    public void removeLast() {
+    private void removeLast() {
         map.remove(tail.key);
         if(head == tail) {
             head = null;
             tail = null;
         }else {
             Node tmp = tail.prev;
-            tail.prev.next = null;
+            tmp.next = null;
             tail = tmp;
             tail.next = null;
         }
