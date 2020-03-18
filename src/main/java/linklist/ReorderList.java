@@ -20,17 +20,17 @@ public class ReorderList {
         }
 
         ListNode h = slow.next;
+        if(h == null) return;
         slow.next = null;
-        ListNode dummy = new ListNode(0);
-        while(h != null) {
-            ListNode next = h.next;
-            ListNode tmp = dummy.next;
-            dummy.next = h;
-            h.next = tmp;
-            h = next;
+        ListNode p = h; ListNode q = h.next;
+        while(q != null) {
+            ListNode tmp = q.next;
+            q.next = p;
+            p = q;
+            q = tmp;
         }
-
-        fast = dummy.next;
+        h.next = null;
+        fast = p;
         slow = head;
         while(slow != null) {
             if(fast != null) {
@@ -43,5 +43,6 @@ public class ReorderList {
             }else
                 break;
         }
+
     }
 }
