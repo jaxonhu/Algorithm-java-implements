@@ -29,7 +29,7 @@ public class FlattenBinaryTreeToLinkedList {
             if(p.left != null) {
                 stack.push(p.left);
             }
-            if(p != null && !stack.isEmpty()) {
+            if(!stack.isEmpty()) {
                 p.left = null;
                 p.right = stack.peek();
             }
