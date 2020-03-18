@@ -116,36 +116,27 @@ public class BinaryTreeTraversal {
         return result;
     }
 
-   //再写一遍
+   // 相当于重新辅助栈顺序为 根 右 左 然后再output
 
     public List<Integer> postOrderLevelTraversal(TreeNode root) {
-        List<Integer> result = null;
-        if(root == null)
-            return result;
-        result = new ArrayList<Integer>();
-        Stack<WrapperTreeNode> stack = new Stack<>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        Stack<Integer> helper = new Stack<Integer>();
+        List<Integer> res = new ArrayList<Integer>();
         TreeNode p = root;
         while(p != null || !stack.isEmpty()) {
-            while(p != null) {
-                stack.push(new WrapperTreeNode(p));
+            if(p != null) {
+                stack.push(p);
+                helper.push(p.val);
                 p = p.left;
-            }
-            WrapperTreeNode tmp = stack.peek();
-            while(!stack.empty()) {
-                if(tmp.visited) {
-                    result.add(tmp.treeNode.val);
-                    stack.pop();
-                    tmp = stack.peek();
-                }else {
-                  tmp.visited = true;
-                  p = tmp.treeNode.right;
-                  if(p != null)
-                    stack.push(new WrapperTreeNode(p));
-                  break;
-                }
+            } else {
+                TreeNode node = stack.pop();
+                p = node.right;
             }
         }
-        return result;
+        while(!helper.isEmpty()) {
+            res.add(helper.pop());
+        }
+        return res;
     }
 
 }
