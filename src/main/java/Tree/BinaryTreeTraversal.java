@@ -127,10 +127,10 @@ public class BinaryTreeTraversal {
             if(p != null) {
                 stack.push(p);
                 helper.push(p.val);
-                p = p.left;
+                p = p.right;
             } else {
                 TreeNode node = stack.pop();
-                p = node.right;
+                p = node.left;
             }
         }
         while(!helper.isEmpty()) {
