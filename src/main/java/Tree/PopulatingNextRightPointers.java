@@ -86,7 +86,6 @@ public class PopulatingNextRightPointers {
             if(p.next != null) {
                 p.right.next = p.next.left;
                 p = p.next;
-                continue;
             }else {
                 p = first;
                 first = null;
