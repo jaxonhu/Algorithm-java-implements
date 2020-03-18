@@ -1,5 +1,7 @@
 package stringtype;
 
+import java.util.Arrays;
+
 /**
  * @ Author: jaxon
  * @ Description:
@@ -17,26 +19,31 @@ public class ShortestPalindrom {
      *   Output: "aaacecaaa"
      *   Input: "abcd"
      *   Output: "dcbabcd"
-     *
+     *  aacecaaa#aaacecaa
+     *            aacecaaa#aaacecaa
      */
     public static String shortestPalindrome(String s) {
         String temp = s + "#" + new StringBuilder(s).reverse().toString();
         int l = temp.length();
-        int[] prefix = new int[l];
-        prefix[0] = 0;
-        for(int i = 1 ; i < temp.length() ; i ++) {
-            int j = prefix[i - 1];
-            while(j > 0 && temp.charAt(i) != temp.charAt(j))
-                j = prefix[j - 1];
-            j += (temp.charAt(i) == temp.charAt(j)) ? 1 : 0;
-            prefix[i] = j;
+        int[] prefix = new int[l+1];
+        prefix[0] = -1;
+        int j = -1;
+        int i = 0;
+        while( i < temp.length()) {
+            if(j == -1 || temp.charAt(i) == temp.charAt(j)) {
+                ++i;
+                ++j;
+                prefix[i] = j;
+            } else
+                j = prefix[j];
         }
-        String s2 = s.substring(prefix[temp.length() - 1]);
+        System.out.println(Arrays.toString(prefix));
+        String s2 = s.substring(prefix[temp.length()]);
         return new StringBuilder(s2).reverse().toString() + s;
     }
 
     public static void main(String[] args) {
-        String target = "aaba";
+        String target = "aaacecaaa";
         System.out.println(shortestPalindrome(target));
     }
 }
