@@ -16,7 +16,6 @@ public class BestTimeToBuyAndSellStock {
      */
 
     public int maxProfit(int[] prices){
-        int profit = 0;
         int n = prices.length;
         int[][] local = new int[n][3];
         int[][] global = new int[n][3];
@@ -24,7 +23,7 @@ public class BestTimeToBuyAndSellStock {
         for(int i = 1 ; i < n ; ++ i) {
             int diff = prices[i] - prices[i-1];
             for(int j = 1 ; j < 3 ; ++ j) {
-                local[i][j] = Math.max(local[i-1][j-1] + Math.max(diff, 0), local[i-1][j] + diff); //make the deal
+                local[i][j] = Math.max(global[i-1][j-1] + Math.max(diff, 0), local[i-1][j] + diff); //make the deal
                 global[i][j] = Math.max(local[i][j], global[i-1][j]);// maybe not make the deal
             }
         }
