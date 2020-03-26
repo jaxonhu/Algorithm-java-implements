@@ -139,4 +139,34 @@ public class BinaryTreeTraversal {
         return res;
     }
 
+
+    /**
+     *  非递归后序遍历，用prev记录上次访问的节点，访问的条件有两个：
+     *  1. cur.right == null ,即访问到了叶子节点
+     *  2. cur.right == prev, 已经访问过右子节点
+     */
+
+    public List<Integer> postOrderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode prev = null;
+        TreeNode cur = root;
+        while(cur != null || !stack.isEmpty()) {
+            while(cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.peek();
+            if(cur.right == null || cur.right == prev) {
+                result.add(cur.val);
+                stack.pop();
+                prev = cur;
+                cur = null;
+            } else {
+                cur = cur.right;
+            }
+        }
+        return result;
+    }
+
 }
