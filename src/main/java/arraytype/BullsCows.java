@@ -56,4 +56,41 @@ public class BullsCows {
         return bulls + "A" + cows + "B";
     }
 
+    /**
+     * 两次循环解决
+     * 第一次循环得到bulls
+     * 第二次循环时，判断hash表中是否存在相应的数
+     *
+     * 如果，numbers[s] > 0 表示出现过相同的g
+     * 如果，numbers[g] < 0 表示出现过相同的s
+     *
+     * numbers[s] -- , 对应g
+     * numbers[g] ++,  对应s
+     */
+    public String getHint2(String secret, String guess) {
+        int bulls = 0;
+        int cows = 0;
+        int[] numbers = new int[10];
+        for(int i = 0 ; i < secret.length() ; i ++) {
+            if(secret.charAt(i) == guess.charAt(i)) {
+                bulls ++;
+            }
+        }
+        for(int i = 0 ; i < secret.length() ; i ++) {
+            int s = secret.charAt(i) - '0';
+            int g = secret.charAt(i) - '0';
+            if(s != g) {
+                if(numbers[s] > 0) {
+                    cows ++;
+                }
+                if(numbers[g] <0 ) {
+                    cows ++;
+                }
+                numbers[g]++;
+                numbers[s]--;
+            }
+        }
+        return bulls + "A" + cows + "B";
+    }
+
 }
