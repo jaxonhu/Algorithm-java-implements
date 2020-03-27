@@ -1,4 +1,4 @@
-package arraytype;
+package backtracking;
 
 public class DengChaArray {
 
