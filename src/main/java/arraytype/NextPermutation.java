@@ -20,44 +20,38 @@ public class NextPermutation {
      *
      *   写错了，应该是比较相邻两个元素
      */
+
     public void nextPermutation(int[] nums) {
-
         int n = nums.length;
-        if(n == 0) return;
-
-        int index = n - 2;
-
-        while(index >= 0 && nums[index] >= nums[index + 1]) {
-            index -= 1;
+        if(n <= 1) return;
+        int i = n-1;
+        while(i > 0 && (nums[i] <= nums[i-1])) {
+            i--;
         }
-
-        if(index != -1) {
-            int j = n - 1;
-            while(j >= 0 && nums[j] <= nums[index]) {
-                j -= 1;
-            }
-            swap(nums, index, j);
-        }
-        reverse(nums, index +1 , n-1);
+        if(i > 0) {
+            int j = n-1;
+            i--;
+            while(j >= i && nums[j] <= nums[i]) j--;
+            int temp = nums[j];
+            nums[j] = nums[i];
+            nums[i] = temp;
+            reverse(nums, i+1, n-1);
+        } else
+            reverse(nums, i, n-1);
 
     }
 
-    public void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-
-    public void reverse(int[] nums, int start, int end) {
+    void reverse(int[] nums, int start, int end) {
         if(start >= end) return;
-        for(int i = start, j = end ; i <= j ; ++ i, --j) {
-            swap(nums, i, j);
+        int i = start;
+        int j = end;
+        while(i < j) {
+            int temp = nums[j];
+            nums[j] = nums[i];
+            nums[i] = temp;
+            i++;j--;
         }
     }
-
-    /**
-     * 这里写求下一个排列：
-     */
 
 
 }
