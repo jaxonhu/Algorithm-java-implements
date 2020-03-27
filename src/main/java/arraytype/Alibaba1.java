@@ -45,9 +45,28 @@ public class Alibaba1 {
         return nums[(index_temp + k - 1) % n];
     }
 
+
+    int getKth2(int[] nums, int k) {
+        int n = nums.length;
+        if(n == 0) return -1;
+        int start = 0 ;
+        int end = n-1;
+        while(start < end) {
+            int mid = (start+end) / 2;
+            if(nums[mid] > nums[end]) {
+                start = mid + 1;
+            } else if (nums[mid] < nums[end]) {
+                end = mid;
+            } else {
+                end --;
+            }
+        }
+        return nums[(end + k - 1) %n];
+    }
+
     public static void main(String[] args) {
-        double[] array = {1, 1, 5, 6, 1, 1, 1};
+        int[] array = {1, 1, 5, 6, 1, 1, 1};
         Alibaba1 a = new Alibaba1();
-        System.out.println(a.getKth(array, 2));
+        System.out.println(a.getKth2(array, 6));
     }
 }
