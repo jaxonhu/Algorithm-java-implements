@@ -95,6 +95,67 @@ public class GameOfLife {
         return board[i][j];
     }
 
+
+    /**
+     * 也可以子原矩阵修改，增加两个状态变量-1 和 2
+     * -1 表示cell从live转为dead   2 表示cell从dead转为live
+     * 这样就可以表示未修改前的cell状态
+     * 然后再同一修改为0 1
+     */
+
+    public void gameOfLife2(int[][] board) {
+        int m = board.length;
+        if(m == 0) return;
+        int n = board[0].length;
+        for(int i = 0 ; i < m ; i ++) {
+            for(int j = 0 ; j < n ; j ++) {
+                judge2(board, i, j);
+            }
+        }
+        for(int i = 0 ; i < m ; i ++) {
+            for(int j = 0 ; j < n ; j ++) {
+                if(board[i][j] > 0) {
+                    board[i][j] = 1;
+                } else {
+                    board[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    void judge2(int[][] board, int i, int j) {
+        int sum = 0;
+        sum += readCell2(i-1,j-1,board);
+        sum += readCell2(i-1,j,board);
+        sum += readCell2(i-1,j+1,board);
+        sum += readCell2(i,j-1,board);
+        sum += readCell2(i,j+1,board);
+        sum += readCell2(i+1,j-1,board);
+        sum += readCell2(i+1,j,board);
+        sum += readCell2(i+1,j+1,board);
+        if(board[i][j] == 1 && sum < 2) {
+            board[i][j] = -1;
+        } else if(board[i][j] == 1 && (sum == 2 || sum == 3)) {
+            board[i][j] = 1;
+        } else if(board[i][j] == 1 && sum > 3) {
+            board[i][j] = -1;
+        } else if(board[i][j] == 0 && sum == 3) {
+            board[i][j] = 2;
+        }
+    }
+
+    int readCell2(int i, int j, int[][] board) {
+        int m = board.length;
+        int n = board[0].length;
+        if(i < 0 || i >= m) return 0;
+        if(j < 0 || j >= n) return 0;
+        if(board[i][j] == 1 || board[i][j] == -1) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
         int[][] test = new int[][] {
                 {0,1,0},
