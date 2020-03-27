@@ -9,21 +9,25 @@ package arraytype;
  */
 public class FindDuplicateNumber {
 
-    public int findDuplicate(int[] nums) {
+    static int findDuplicate(int[] nums) {
         int n = nums.length;
-        for(int i=0;i<nums.length;i++) nums[i]--;
-        int slow = n-1;
-        int fast = n-1;
-        do{
+        if(n <= 1) return -1;
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+        while(slow != fast) {
             slow = nums[slow];
             fast = nums[nums[fast]];
-        }while(slow != fast);
-        slow = n-1;
-        while(slow != fast){
+        }
+        slow = 0;
+        while(slow != fast) {
             slow = nums[slow];
             fast = nums[fast];
         }
-        return slow+1;
+        return slow;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(findDuplicate(new int[] {1,3,4,2,2}));
     }
 
 }
