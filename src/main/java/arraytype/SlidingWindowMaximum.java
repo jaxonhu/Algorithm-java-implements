@@ -1,6 +1,8 @@
 package arraytype;
 
 import java.util.Comparator;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 /**
@@ -58,6 +60,38 @@ public class SlidingWindowMaximum {
         return sliding_max;
     }
 
+
+    /**
+     *  可以用一个双端队列保存窗口内最大值的index
+     *
+     *  存index可以判断何时从窗口删除
+     *
+     *  双端队列内部从对头到队尾按照index对应数组中的值降序排列
+     *
+     *  每次移动窗口，分3个步骤：
+     *
+     *  1. 判断当前最大值是否需要移除
+     *  2. 将新进入窗口的值从双端队列的队尾移入到何时位置：如过队尾元素的数组值小于新值，则从队尾移除该元素，将新进入窗口的值移入队尾
+     *  3. 如果当前位置大于等于窗口长度，每次滑动将窗口中队首元素值移入结果数组
+     *
+     */
+    public int[] maxSlidingWindow3(int[] nums, int k) {
+        Deque<Integer> queue = new LinkedList<>();
+        int cnt = 0;
+        int n = nums.length;
+        int[] res = new int[n-k+1];
+        int index = 0;
+        while(cnt < n) {
+            if(queue.size() !=0 && (cnt-k) == queue.peek()) queue.removeFirst();
+            while(queue.size() != 0 && nums[cnt] > nums[queue.getLast()]) queue.removeLast();
+            queue.addLast(cnt);
+            if(cnt + 1 >= k && queue.size() != 0) {
+                res[index++] = nums[queue.peek()];
+            }
+            cnt ++;
+        }
+        return res;
+    }
 }
 
 
