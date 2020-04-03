@@ -54,12 +54,16 @@ public class FastPower {
      */
 
     long powerIterative(long a, long b) {
-        long limit = b / 2;
         long res = a;
-        for(long i = 1 ; i <= b /2 ; i ++) {
-            res = res * res;
+        while(b > 0) {
+            if((b % 2) == 0) {
+                b = b / 2;
+                res = res * res;
+            } else {
+                b = b - 1;
+                res = res * b;
+            }
         }
-        res = res * (b % 2 == 0 ? 1 : a);
         return res;
     }
 
