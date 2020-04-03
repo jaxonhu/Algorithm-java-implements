@@ -53,7 +53,7 @@ public class LRUCache {
             Node node = new Node(key, value);
             map.put(key, node);
             addNew(node);
-        }else {
+        } else {
             Node node = map.get(key);
             updateCache(node);
             node.value = value;
