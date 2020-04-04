@@ -45,30 +45,30 @@ public class ArithmeticMatrix {
         }
         A[i][j] = value;
         if(!colsOK[j]) {
-            if(cols[j] == -1) {
+            if(cols[j] == -1 || cols[j] == i) {
                 cols[j] = i;
             } else {
                 colsOK[j] = true;
-                int delta = (value - A[cols[j]][j]) / (j - cols[j]);
-                for(int k = 0 ; k <= i-1 ; k --) {
-                    fill(k, i, (i-k) * delta);
+                int delta = (value - A[cols[j]][j]) / (i - cols[j]);
+                for(int k = i-1 ; k >= 0 ; k --) {
+                    fill(k, j, value - (i-k) * delta);
                 }
                 for(int k = i+1 ; k < m ; k ++) {
-                    fill(k, i, (k-i) * delta);
+                    fill(k, j, value + (k-i) * delta);
                 }
             }
         }
         if(!rowsOK[i]) {
-            if(rows[i] == -1) {
+            if(rows[i] == -1 || rows[i] == j) {
                 rows[i] = j;
             } else {
-                rowsOK[j] = true;
-                int delta = (value - A[i][rows[i]]) / (i - rows[i]);
-                for(int k = 0 ; k <= j-1 ; k --) {
-                    fill(i, k, (j-k) * delta);
+                rowsOK[i] = true;
+                int delta = (value - A[i][rows[i]]) / (j - rows[i]);
+                for(int k = j-1 ; k >= 0 ; k --) {
+                    fill(i, k, value - (j-k) * delta);
                 }
                 for(int k = j+1 ; k < n ; k ++) {
-                    fill(i, k,(k-j) * delta);
+                    fill(i, k,value + (k-j) * delta);
                 }
             }
         }
@@ -98,8 +98,8 @@ public class ArithmeticMatrix {
         }
 
         for(int k = 0 ; k < q ; k ++) {
-            int i = scanner.nextInt();
-            int j = scanner.nextInt();
+            int i = scanner.nextInt()-1;
+            int j = scanner.nextInt()-1;
             if(A[i][j] != 0) {
                 System.out.println(A[i][j]);
             } else {
