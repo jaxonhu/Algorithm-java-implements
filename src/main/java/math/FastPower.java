@@ -1,5 +1,9 @@
 package math;
 
+import org.junit.Test;
+
+import java.util.Arrays;
+
 /**
  * @ Author: jaxon
  * @ Description:
@@ -66,5 +70,55 @@ public class FastPower {
         }
         return res;
     }
+
+
+
+    /**
+     *
+     * 矩阵快速幂, 算法与上面基本一致
+     *  N*N 矩阵
+     */
+
+    int[][] matrixMultiple(int[][] A, int[][] B) {
+        int N = A.length;
+        int[][] res=  new int[N][N];
+        for(int i = 0 ; i < N ; i ++) {
+            for(int j = 0 ; j < N ; j ++) {
+                int temp = 0;
+                for(int k  = 0 ; k < N ; k ++) {
+                    temp += A[i][k] * B[k][j];
+                }
+                res[i][j] = temp;
+            }
+        }
+        return res;
+    }
+
+    int[][] powMatrix(int[][] A, int k) {
+        int n = A.length;
+        int[][] res = new int[n][n];
+        for(int i = 0 ; i < n ; i ++) res[i][i] = 1;
+        while(k > 0) {
+            if((k&1) == 1) {
+                res = matrixMultiple(res, A);
+            }
+            A = matrixMultiple(A, A);
+            k >>= 1;
+        }
+        return res;
+    }
+
+    @Test
+    public void testPowMatrix() {
+        int[][] A  = new int[][] {
+                {1, 1},
+                {1, 1}
+        };
+        int[][] res = powMatrix(A, 3);
+        for(int i = 0 ; i < A.length ; i ++) {
+            System.out.println(Arrays.toString(res[i]));
+        }
+    }
+
 
 }
