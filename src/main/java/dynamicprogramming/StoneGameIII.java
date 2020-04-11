@@ -102,4 +102,28 @@ public class StoneGameIII {
     }
 
 
+    /**
+     *
+     *  另一种dp解法
+     *  目标结果：从0开始拿，所能拿到的最高分，如果最高分大于 sum/2 则alice赢，如果等于，则平局，如果小于，则bob赢
+     *  中间状态：第 i 个，alice开始拿
+     *  状态转移：如果从 i 个开始拿的最高分是已知解，那么从第 i 个bob开始拿的得分也是dp[i], 假设第 i 手是alice拿，那么
+     *           i+1  i+2 i+3可以是bob拿，因此 第i个状态是从 i+1 i+2 i+3 转移而来
+     *  转移方程：dp[i] = Math.max(sum - dp[i+1], sum - dp[i+2], sum - dp[i+3]);
+     *
+     */
+    public String stoneGameIII2(int[] stoneValue) {
+        int n = stoneValue.length;
+        if(n == 0) return "Tie";
+        int[] dp = new int[n+3];
+        int sum = 0;
+        for(int i = n-1 ; i >= 0 ; i --) {
+            sum += stoneValue[i];
+            dp[i] = Math.max(sum - dp[i+1], Math.max(sum - dp[i+2], sum - dp[i+3]));
+        }
+        if(2 * dp[0] > sum) return "Alice";
+        if(2 * dp[0] < sum) return "Bob";
+        return "Tie";
+    }
+
 }
