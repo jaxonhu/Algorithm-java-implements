@@ -54,6 +54,7 @@ public class StoneGameIII {
      *
      * 题解： 动态规划之零和博弈
      *
+     *      dp[n][2] : Alice-bob
      */
 
     int N = 50000 + 50;
