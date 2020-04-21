@@ -89,4 +89,48 @@ public class MinimumFrogsCroaking {
         }
         return cnt;
     }
+
+
+    /**
+     *
+     * DP动态规划方法
+     * 一共 'c' 'r' 'o' 'a' 'k' 五种状态
+     * dp[i][j] 表示当前字符串中位置i，处于的状态j的青蛙数量
+     */
+
+    int MAX = 100050;
+    int[][] dp = new int[MAX][5];
+
+    int c2i(char ch) {
+        if(ch == 'c') return 0;
+        if(ch == 'r') return 1;
+        if(ch == 'o') return 2;
+        if(ch == 'a') return 3;
+        if(ch == 'k') return 4;
+        return -1;
+    }
+
+    public int minNumberOfFrogs2(String croakOfFrogs) {
+        int ans = -1;
+        for(int i = 1 ; i <= croakOfFrogs.length() ;  i++) {
+            int sum = 0;
+            int ch = c2i(croakOfFrogs.charAt(i-1));
+            if(ch == -1) return -1;
+            if(ch == 0) {
+                dp[i][ch] ++;
+            } else {
+                dp[i][ch] ++; dp[i][ch-1] --;
+            }
+            for(int j = 0 ;  j < 4 ; j ++) {
+                dp[i][j] = dp[i][j] + dp[i-1][j];
+            }
+            for(int j = 0 ; j < 5 ; j ++) if(dp[i][j] < 0) return -1;
+            for(int j = 0 ; j < 5 ; j ++) sum += dp[i][j];
+            ans = Math.max(ans, sum);
+        }
+        for(int j = 0 ; j < 4 ; j ++) {
+            if(dp[croakOfFrogs.length()][j] != 0) return  -1;
+        }
+        return ans;
+    }
 }
