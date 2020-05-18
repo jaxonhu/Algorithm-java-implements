@@ -171,4 +171,70 @@ public class CountSmallerNumbersAfterSelf {
         }
         return result;
     }
+
+    /**
+     *  归并排序解法
+     */
+
+    private int[] index; // 记录中间排序结果对应在nums数组中的index
+    private int[] helper;// 作用等同于归并排序中的temp数组
+    private int[] count; // 最终结果
+
+    public List<Integer> countSmaller3(int[] nums) {
+        List<Integer> res = new ArrayList<>(nums.length);
+
+        index = new int[nums.length];
+        helper = new int[nums.length];
+        count = new int[nums.length];
+        for (int i = 0; i < index.length; i++) {
+            index[i] = i;
+        }
+
+        merge(nums, 0, nums.length - 1);
+
+        for (int i = 0; i < count.length; i++) {
+            res.add(i, count[i]);
+        }
+        return res;
+    }
+
+    private void merge(int[] nums, int s, int e) {
+        if (s == e || s > e) return;
+        int mid = (s + e) >> 1;
+
+        if (s < mid) {
+            merge(nums, s, mid);
+        }
+
+        if (mid + 1 < e) {
+            merge(nums, mid + 1, e);
+        }
+
+        int i = s, j = mid + 1;
+        int hi = s;
+        while (i <= mid && j <= e) {
+            if (nums[index[i]] <= nums[index[j]]) {
+                // 右侧出
+                helper[hi++] = index[j++];
+            } else {
+                // 左侧出 计数
+                count[index[i]] += e - j + 1;
+                helper[hi++] = index[i++];
+            }
+        }
+
+        while (i <= mid) {
+            //左侧出
+            helper[hi++] = index[i++];
+        }
+
+        while (j <= e) {
+            // 右侧出
+            helper[hi++] = index[j++];
+        }
+
+        for (int k = s; k <= e; k++) {
+            index[k] = helper[k];
+        }
+    }
 }
