@@ -142,5 +142,22 @@ public class LowestCommonAncestorOfABinaryTree {
         }
     }
 
+    /**
+     *  这样写好一点
+     */
+    public TreeNode lowestCommonAncestor5(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || root == p || root == q || p == null || q == null)
+            return root;
+
+        if(p.val > q.val) {
+            TreeNode temp = q;
+            q = p;
+            p = temp;
+        }
+        if(root.val > q.val) return lowestCommonAncestor5(root.left, p, q);
+        if(root.val < p.val) return lowestCommonAncestor5(root.right, p, q);
+        return root;
+    }
+
 
 }
