@@ -18,6 +18,7 @@ public class BasicCalculator {
      * 思路：用栈，两个栈，一个运算数栈，一个操作符栈，然后运算符入栈时比较优先级
      * 思路2：循环遍历字符串，先计算乘除再计算加减
      */
+    // 1+2*5
     public int calculate(String s) {
         int num = 0;
         char  op = '+';
